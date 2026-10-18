@@ -1,0 +1,223 @@
+/* Стили плеера. Подход mobile-first: базовые правила для узких экранов (360px),
+   расширения — через media-запросы для планшетов, десктопов и 4K. */
+
+.app {
+  /* Фиксированная высота панели управления (переопределяется в media-запросах) */
+  --controls-h: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* Ровно высота вьюпорта: без прокрутки, панель всегда в кадре */
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+/* --- Сцена с холстом --- */
+.stage {
+  position: relative;
+  /* Занимает всё свободное пространство между верхом и панелью управления */
+  flex: 1 1 0;
+  width: 100%;
+  min-height: 0;
+  overflow: hidden;
+  background: #0b0420;
+}
+
+.stage__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Кнопка полноэкранного режима поверх сцены */
+.stage__fullscreen {
+  position: absolute;
+  top: max(0.75rem, env(safe-area-inset-top));
+  right: max(0.75rem, env(safe-area-inset-right));
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  font-size: 1.25rem;
+  color: var(--color-text);
+  background: rgba(11, 4, 32, 0.5);
+  border: 1px solid rgba(0, 229, 255, 0.5);
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.stage__fullscreen:hover {
+  background: rgba(0, 229, 255, 0.2);
+}
+
+.stage__fullscreen:active {
+  transform: scale(0.94);
+}
+
+.stage__fullscreen:focus-visible {
+  outline: 2px solid var(--neon-cyan);
+  outline-offset: 2px;
+}
+
+/* Сцена на весь экран в полноэкранном режиме */
+.stage:fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* --- Панель управления --- */
+.controls {
+  /* Жёстко прижата к низу: не сжимается и не растягивается, фиксированная высота */
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: calc(var(--controls-h) + env(safe-area-inset-bottom));
+  padding: 0 1rem env(safe-area-inset-bottom);
+  background: rgba(20, 8, 40, 0.96);
+  border-top: 1px solid rgba(255, 45, 149, 0.35);
+}
+
+.controls__play {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0;
+  font-size: 1.15rem;
+  color: #0b0420;
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 18px rgba(255, 45, 149, 0.55);
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.controls__play:hover {
+  box-shadow: 0 0 26px rgba(0, 229, 255, 0.7);
+}
+
+.controls__play:active {
+  transform: scale(0.94);
+}
+
+.controls__play:focus-visible {
+  outline: 2px solid var(--neon-cyan);
+  outline-offset: 3px;
+}
+
+.controls__timeline {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+/* Слайдер таймлайна с заливкой прогресса через CSS-переменную --progress */
+.controls__range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  margin: 0;
+  background: linear-gradient(
+    90deg,
+    var(--neon-cyan) 0%,
+    var(--neon-pink) var(--progress, 0%),
+    rgba(255, 255, 255, 0.16) var(--progress, 0%),
+    rgba(255, 255, 255, 0.16) 100%
+  );
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.controls__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border: 2px solid var(--neon-pink);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 45, 149, 0.9);
+  cursor: pointer;
+}
+
+.controls__range::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border: 2px solid var(--neon-pink);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 45, 149, 0.9);
+  cursor: pointer;
+}
+
+.controls__range:focus-visible {
+  outline: 2px solid var(--neon-cyan);
+  outline-offset: 4px;
+}
+
+.controls__time {
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-muted);
+  text-align: right;
+}
+
+/* --- Планшеты и десктопы --- */
+@media (min-width: 768px) {
+  .app {
+    --controls-h: 5.5rem;
+  }
+
+  .controls {
+    gap: 1.25rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .controls__play {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.35rem;
+  }
+
+  .controls__time {
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Большие экраны / 4K --- */
+@media (min-width: 1920px) {
+  .app {
+    --controls-h: 6rem;
+  }
+
+  .controls {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+
+  .controls__play {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.5rem;
+  }
+
+  .controls__range {
+    height: 8px;
+  }
+
+  .controls__time {
+    font-size: 1.05rem;
+  }
+}

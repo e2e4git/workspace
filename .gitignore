@@ -1,0 +1,16 @@
+# Зависимости
+node_modules
+
+# Артефакты сборки
+dist
+dist-ssr
+
+# Логи
+*.log
+npm-debug.log*
+
+# Редакторы и ОС
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
