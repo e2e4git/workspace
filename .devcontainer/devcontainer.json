@@ -1,11 +1,17 @@
 {
   "name": "Secure-Agent-Sandbox",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
-  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y ripgrep git && sudo find / -name 'server-main.js' 2>/dev/null | sed 's|/out/server-main.js||' | while read root; do sudo mkdir -p \"$root/node_modules/@vscode/ripgrep/bin\" && sudo cp /usr/bin/rg \"$root/node_modules/@vscode/ripgrep/bin/rg\"; done",
+  "features": {
+    "ghcr.io/devcontainers/features/rust:1": {},
+    "ghcr.io/devcontainers/features/python:1": {}
+  },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y ripgrep git python3-pip && sudo find / -name 'server-main.js' 2>/dev/null | sed 's|/out/server-main.js||' | while read root; do sudo mkdir -p \"$root/node_modules/@vscode/ripgrep/bin\" && sudo cp /usr/bin/rg \"$root/node_modules/@vscode/ripgrep/bin/rg\"; done",
   "customizations": {
     "vscode": {
       "extensions": [
-        "RooVeterinaryInc.roo-cline"
+        "RooVeterinaryInc.roo-cline",
+        "rust-lang.rust-analyzer",
+        "ms-python.python"
       ],
       "settings": {
         "terminal.integrated.cwd": "/workspace",
