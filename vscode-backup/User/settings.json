@@ -1,4 +1,9 @@
 {
     "workbench.colorTheme": "Dark+",
-    "editor.fontSize": 14
+    "editor.fontSize": 14,
+    "roo-cline.debug": false,
+    "roo-cline.allowedCommands": [
+        "*"
+    ],
+    "roo-cline.deniedCommands": []
 }
