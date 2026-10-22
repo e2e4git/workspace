@@ -1,2 +1,11 @@
-ms-vscode-remote.remote-containers
+Extensions installed on Dev Container: Secure-Agent-Sandbox:
+dbaeumer.vscode-eslint
+ms-python.autopep8
+ms-python.debugpy
+ms-python.python
+ms-python.vscode-pylance
+ms-python.vscode-python-envs
 rooveterinaryinc.roo-cline
+rust-lang.rust-analyzer
+tamasfe.even-better-toml
+vadimcn.vscode-lldb
