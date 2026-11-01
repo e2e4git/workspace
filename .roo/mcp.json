@@ -1,0 +1,25 @@
+{
+	"mcpServers": {
+		"freecad": {
+			"command": "/home/node/.local/bin/uvx",
+			"args": [
+				"freecad-mcp",
+				"--only-text-feedback",
+				"--host",
+				"172.17.0.1"
+			],
+			"env": {
+				"FREECAD_MCP_TOKEN": "123"
+			},
+			"timeout": 300,
+			"alwaysAllow": [
+				"execute_code",
+				"get_rpc_status",
+				"list_documents",
+				"create_document",
+				"get_view",
+				"execute_code_headless"
+			]
+		}
+	}
+}

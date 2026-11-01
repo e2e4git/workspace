@@ -6,10 +6,12 @@
     "ghcr.io/devcontainers/features/python:1": {}
   },
   "postCreateCommand": "sudo apt-get update && sudo apt-get install -y ripgrep git python3-pip && sudo find / -name 'server-main.js' 2>/dev/null | sed 's|/out/server-main.js||' | while read root; do sudo mkdir -p \"$root/node_modules/@vscode/ripgrep/bin\" && sudo cp /usr/bin/rg \"$root/node_modules/@vscode/ripgrep/bin/rg\"; done",
+  "postStartCommand": "curl -LsSf https://astral.sh/uv/install.sh | sh && echo 'export PATH=\"$HOME/.local/bin:$PATH\"' >> ~/.bashrc && sudo chown -R node:node /workspace",
   "customizations": {
     "vscode": {
       "extensions": [
         "RooVeterinaryInc.roo-cline",
+        "ZooCodeOrganization.zoo-code",
         "rust-lang.rust-analyzer",
         "ms-python.python"
       ],
@@ -19,6 +21,10 @@
       }
     }
   },
+  "mounts": [
+    "source=/etc/localtime,target=/etc/localtime,readonly,type=bind",
+    "source=${localEnv:HOME}/Downloads,target=/host-downloads,type=bind,consistency=cached"
+  ],
   "remoteUser": "node",
   "workspaceFolder": "/workspace",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
@@ -27,6 +33,7 @@
     "--dns=1.1.1.1",
     "--pids-limit=256",
     "--memory=4g",
-    "--cpus=2"
+    "--cpus=2",
+    "--add-host=host.docker.internal:host-gateway"
   ]
 }

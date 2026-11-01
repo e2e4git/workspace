@@ -22,13 +22,284 @@
   width: 100%;
   min-height: 0;
   overflow: hidden;
-  background: #0b0420;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(177, 108, 234, 0.28), transparent 20%),
+    linear-gradient(180deg, #120a2d 0%, #090514 38%, #040912 100%);
 }
 
 .stage__canvas {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+.stage__art {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.girl {
+  position: relative;
+  width: min(17rem, 48vw);
+  height: min(29rem, 70vh);
+  margin-bottom: 2.8rem;
+  filter: drop-shadow(0 0 18px rgba(255, 45, 149, 0.35));
+  animation: girlFloat 5s ease-in-out infinite;
+}
+
+.girl__halo {
+  position: absolute;
+  left: 50%;
+  top: 0.3rem;
+  width: 10rem;
+  height: 10rem;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.45), rgba(0, 229, 255, 0) 65%);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.girl__shadow {
+  position: absolute;
+  left: 50%;
+  bottom: 0.2rem;
+  width: 11rem;
+  height: 1.8rem;
+  background: rgba(5, 10, 18, 0.7);
+  border-radius: 50%;
+  transform: translateX(-50%);
+  filter: blur(8px);
+}
+
+.girl__head {
+  position: absolute;
+  left: 50%;
+  top: 2.1rem;
+  width: 6.6rem;
+  height: 7.2rem;
+  transform: translateX(-50%);
+}
+
+.girl__face {
+  position: absolute;
+  left: 50%;
+  top: 0.7rem;
+  width: 5.3rem;
+  height: 5.8rem;
+  background: linear-gradient(180deg, #f8d7c3 0%, #f0c3a4 100%);
+  border-radius: 46% 46% 52% 52% / 44% 44% 56% 56%;
+  transform: translateX(-50%);
+  box-shadow: inset 0 -0.2rem 0 rgba(210, 139, 106, 0.2);
+}
+
+.girl__hair {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #2f1b45 0%, #1d102e 100%);
+}
+
+.girl__hair--back {
+  left: 50%;
+  top: 0;
+  width: 6.7rem;
+  height: 7.4rem;
+  transform: translateX(-50%);
+  border-radius: 48% 48% 44% 44% / 48% 48% 52% 52%;
+  box-shadow: inset -0.3rem 0 0 rgba(255, 255, 255, 0.06);
+}
+
+.girl__hair--front {
+  left: 50%;
+  top: 0.8rem;
+  width: 6.6rem;
+  height: 5.7rem;
+  transform: translateX(-50%);
+  border-radius: 60% 60% 45% 45% / 68% 68% 42% 42%;
+  background: linear-gradient(180deg, #35204f 0%, #1c112c 100%);
+  overflow: hidden;
+}
+
+.girl__hair--front::before,
+.girl__hair--front::after {
+  content: '';
+  position: absolute;
+  width: 1.7rem;
+  height: 3.2rem;
+  top: 1.3rem;
+  background: linear-gradient(180deg, #2d173c 0%, #170d21 100%);
+  border-radius: 50% 50% 45% 45%;
+}
+
+.girl__hair--front::before {
+  left: 0.4rem;
+  transform: rotate(-18deg);
+}
+
+.girl__hair--front::after {
+  right: 0.4rem;
+  transform: rotate(18deg);
+}
+
+.girl__eye {
+  position: absolute;
+  top: 2.2rem;
+  width: 0.42rem;
+  height: 0.42rem;
+  background: #1a1023;
+  border-radius: 50%;
+}
+
+.girl__eye--left { left: 1.45rem; }
+.girl__eye--right { right: 1.45rem; }
+
+.girl__blush {
+  position: absolute;
+  top: 2.9rem;
+  width: 0.7rem;
+  height: 0.42rem;
+  background: rgba(236, 122, 150, 0.45);
+  border-radius: 50%;
+}
+
+.girl__blush--left { left: 0.5rem; }
+.girl__blush--right { right: 0.5rem; }
+
+.girl__mouth {
+  position: absolute;
+  left: 50%;
+  bottom: 0.9rem;
+  width: 1.1rem;
+  height: 0.52rem;
+  border-bottom: 0.14rem solid rgba(160, 61, 76, 0.9);
+  border-radius: 0 0 0.8rem 0.8rem;
+  transform: translateX(-50%);
+}
+
+.girl__body {
+  position: absolute;
+  left: 50%;
+  top: 8.7rem;
+  width: 9rem;
+  height: 11.8rem;
+  transform: translateX(-50%);
+}
+
+.girl__neck {
+  position: absolute;
+  left: 50%;
+  top: 0.3rem;
+  width: 0.85rem;
+  height: 1.2rem;
+  background: linear-gradient(180deg, #f4c8a5 0%, #e7b38a 100%);
+  transform: translateX(-50%);
+  border-radius: 0.4rem;
+}
+
+.girl__torso {
+  position: absolute;
+  left: 50%;
+  top: 1.2rem;
+  width: 4.7rem;
+  height: 5.3rem;
+  background: linear-gradient(180deg, #f7d1ff 0%, #d8a3ff 100%);
+  transform: translateX(-50%);
+  border-radius: 1.4rem 1.4rem 1rem 1rem;
+  box-shadow: inset 0 -0.25rem 0 rgba(138, 74, 175, 0.22);
+}
+
+.girl__dress {
+  position: absolute;
+  left: 50%;
+  top: 5.2rem;
+  width: 6.5rem;
+  height: 6.4rem;
+  background: linear-gradient(180deg, #ff70ad 0%, #b93ee2 100%);
+  border-radius: 1.5rem 1.5rem 2rem 2rem / 1.7rem 1.7rem 2.5rem 2.5rem;
+  transform: translateX(-50%);
+  box-shadow: inset 0 -0.25rem 0 rgba(86, 24, 100, 0.25);
+}
+
+.girl__strap {
+  position: absolute;
+  width: 0.9rem;
+  height: 2.4rem;
+  top: 0.35rem;
+  background: linear-gradient(180deg, #ffd5ed 0%, #f7a9d1 100%);
+  border-radius: 999px;
+}
+
+.girl__strap--left { left: 1rem; transform: rotate(18deg); }
+.girl__strap--right { right: 1rem; transform: rotate(-18deg); }
+
+.girl__arm {
+  position: absolute;
+  top: 2.2rem;
+  width: 1.1rem;
+  height: 4.5rem;
+  background: linear-gradient(180deg, #f3cca9 0%, #e6b086 100%);
+  border-radius: 999px;
+}
+
+.girl__arm--left {
+  left: 0.6rem;
+  transform: rotate(26deg);
+}
+
+.girl__arm--right {
+  right: 0.6rem;
+  transform: rotate(-26deg);
+}
+
+.girl__hand {
+  position: absolute;
+  left: 50%;
+  bottom: -0.6rem;
+  width: 1.25rem;
+  height: 1.1rem;
+  background: #f3c8a1;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.girl__legs {
+  position: absolute;
+  left: 50%;
+  top: 17.5rem;
+  width: 6.4rem;
+  height: 8.4rem;
+  transform: translateX(-50%);
+}
+
+.girl__leg {
+  position: absolute;
+  bottom: 0.9rem;
+  width: 1.35rem;
+  height: 4.8rem;
+  background: linear-gradient(180deg, #ffd6f0 0%, #fbc4e3 100%);
+  border-radius: 0.7rem;
+}
+
+.girl__leg--left { left: 1.2rem; }
+.girl__leg--right { right: 1.2rem; }
+
+.girl__shoe {
+  position: absolute;
+  bottom: 0;
+  width: 2.2rem;
+  height: 1rem;
+  background: linear-gradient(180deg, #3b2d5b 0%, #1d152b 100%);
+  border-radius: 1rem 1rem 0.55rem 0.5rem;
+}
+
+.girl__shoe--left { left: 0.8rem; }
+.girl__shoe--right { right: 0.8rem; }
+
+@keyframes girlFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
 /* Кнопка полноэкранного режима поверх сцены */

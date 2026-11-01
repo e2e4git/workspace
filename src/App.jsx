@@ -113,6 +113,46 @@ function App() {
       <div className="stage" ref={stageRef}>
         <canvas className="stage__canvas" ref={canvasRef} />
 
+        <div className="stage__art" aria-label="Stylized girl illustration">
+          <div className="girl">
+            <div className="girl__halo" />
+            <div className="girl__shadow" />
+            <div className="girl__head">
+              <div className="girl__hair girl__hair--back" />
+              <div className="girl__face">
+                <span className="girl__eye girl__eye--left" />
+                <span className="girl__eye girl__eye--right" />
+                <span className="girl__blush girl__blush--left" />
+                <span className="girl__blush girl__blush--right" />
+                <span className="girl__mouth" />
+              </div>
+              <div className="girl__hair girl__hair--front" />
+            </div>
+
+            <div className="girl__body">
+              <div className="girl__neck" />
+              <div className="girl__torso" />
+              <div className="girl__dress">
+                <span className="girl__strap girl__strap--left" />
+                <span className="girl__strap girl__strap--right" />
+              </div>
+              <div className="girl__arm girl__arm--left">
+                <span className="girl__hand" />
+              </div>
+              <div className="girl__arm girl__arm--right">
+                <span className="girl__hand" />
+              </div>
+            </div>
+
+            <div className="girl__legs">
+              <div className="girl__leg girl__leg--left" />
+              <div className="girl__leg girl__leg--right" />
+              <div className="girl__shoe girl__shoe--left" />
+              <div className="girl__shoe girl__shoe--right" />
+            </div>
+          </div>
+        </div>
+
         <button
           type="button"
           className="stage__fullscreen"
